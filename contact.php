@@ -63,15 +63,45 @@ $(function()
 });
 </script>
     <style>
-    img {
-        opacity: 0.6;
-      }
+	#form_container
+	{
+		padding:15px 15px;
+		margin-top:15px;
+ 		background-image: linear-gradient( to left, rgba(123, 37, 234, 0.18), rgba(111, 0, 255, 0.616), rgba(111, 0, 255, 0.384), rgba(156, 89, 242, 0) );
+		color:#fff;
+	}
+	.upload-btn-wrapper 
+	{
+  	position: relative;
+  	overflow: hidden;
+  	display: inline-block;
+	}
 
-      h1 {
+	.upload-btn-wrapper input[type=file] 
+	{
+  	font-size: 100px;
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  	opacity: 0;
+	}
+	.btn{
+	background: #B9DFFF;
+	color: #fff;
+	border: 1px solid #eee;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow:none;
+	}
+    	img {
+        opacity: 0.6;
+      	}
+
+      	h1 {
         color: black;
         font-family: "Times New Roman", Times, serif;
-      }
-      body {
+      	}
+      	body {
         background-image: url("./bimage.jpg");
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -79,7 +109,7 @@ $(function()
         background-size: cover;
         color: white;
         text-align:center;
-      }
+      	}
     </style>
 </head>
 
