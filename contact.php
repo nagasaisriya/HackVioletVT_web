@@ -172,14 +172,13 @@
 session_start();
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $message = "Hi i am ".$name." ".$_POST['message'];
+    $message = "Hi I am ".$name." ".$_POST['message'];
     $subject = "Need help";
     $headers = "From:" . $_POST['email'];
     $to = "codingninja576@gmail.com";
 
     if (mail($to, $subject, $message, $headers)) {
         echo "Successfully sent!";
-        // header("location:index.html");
     } else {
         echo 'oops! Somthing went wrong';
     }
