@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>SheCodes-Think and Do-Contacts</title>
+    <title>SheCodes-Think and Do-Contact</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,16 +10,98 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-    img {
-        opacity: 0.6;
-      }
+    <script>
+$(function()
+{
+    function after_form_submitted(data)
+    {
+        if(data.result == 'success')
+        {
+            $('form#reused_form').hide();
+            $('#success_message').show();
+            $('#error_message').hide();
+        }
+        else
+        {
+            $('#error_message').append('<ul></ul>');
 
-      h1 {
+            jQuery.each(data.errors,function(key,val)
+            {
+                $('#error_message ul').append('<li>'+key+':'+val+'</li>');
+            });
+            $('#success_message').hide();
+            $('#error_message').show();
+
+            $('button[type="button"]', $form).each(function()
+            {
+                $btn = $(this);
+                label = $btn.prop('orig_label');
+                if(label)
+                {
+                    $btn.prop('type','submit' );
+                    $btn.text(label);
+                    $btn.prop('orig_label','');
+                }
+            });
+
+        }
+    }
+
+	$('#reused_form').submit(function(e)
+      {
+        e.preventDefault();
+
+        $form = $(this);
+        $('button[type="submit"]', $form).each(function()
+        {
+            $btn = $(this);
+            $btn.prop('type','button' );
+            $btn.prop('orig_label',$btn.text());
+            $btn.text('Sending ...');
+        });
+      });
+});
+</script>
+    <style>
+	#form_container
+	{
+		padding:15px 15px;
+		margin-top:15px;
+ 		background-image: linear-gradient( to left, rgba(123, 37, 234, 0.18), rgba(111, 0, 255, 0.616), rgba(111, 0, 255, 0.384), rgba(156, 89, 242, 0) );
+		color:#fff;
+	}
+	.upload-btn-wrapper 
+	{
+  	position: relative;
+  	overflow: hidden;
+  	display: inline-block;
+	}
+
+	.upload-btn-wrapper input[type=file] 
+	{
+  	font-size: 100px;
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  	opacity: 0;
+	}
+	.btn{
+	background: #B9DFFF;
+	color: #fff;
+	border: 1px solid #eee;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow:none;
+	}
+    	img {
+        opacity: 0.6;
+      	}
+
+      	h1 {
         color: black;
         font-family: "Times New Roman", Times, serif;
-      }
-      body {
+      	}
+      	body {
         background-image: url("./bimage.jpg");
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -27,7 +109,7 @@
         background-size: cover;
         color: white;
         text-align:center;
-      }
+      	}
     </style>
 </head>
 
@@ -92,74 +174,49 @@
                 CONTACT FORM
             </div>
             <div class="card-body">
-                <form action="">
-                   <!--- <p class="bg-dark text-white"><b>Required fields are followed by *</b></p>
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                        <div class="col-md-8">
-                            <p>FIRST NAME: * <input type="text" name="name" required></p>
-                            <p>LAST NAME: * <input type="text" name="name" required></p>
-                        </div>-->
-
-                            <div class="row">
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="First name">
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name">
-                              </div>
-                            </div>
-                            <form>
-                                <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label for="inputAddress">Address 1</label>
-                                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                </div>
-                                <div class="form-group">
-                                  <label for="inputAddress2">Address 2</label>
-                                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                                </div>
-                                <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
-                                  </div>
-                                  <div class="form-group col-md-4">
-                                    <label for="inputState">State</label>
-                                    <select id="inputState" class="form-control">
-                                      <option selected>Choose...</option>
-                                      <option>Telangana</option>
-                                      <option>AP</option>
-                                      <option>Orrisa</option>
-                                      <option>MP</option>
-                                      <option>Other</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                      Check me out
-                                    </label>
-                                  </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
-                              </form>
-
+                <div class="row">
+        <div class="col-md-6 " id="form_container">
+            <h2>Contact Us</h2>
+            <p>
+               Please send your message below. We will get back to you at the earliest!
+            </p>
+            <form role="form" method="post" id="reused_form">
+    
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="message">
+                            Message:</label>
+                        <textarea class="form-control" type="textarea" id="message" name="message" maxlength="6000" rows="7"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="name">
+                            Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required size="32">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="email">
+                            Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required size="32">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-default pull-right" >Send </button>
+                    </div>
+                </div>
+    
+            </form>
+            <div id="success_message" style="width:100%; height:100%; display:none; ">
+                <h3>Posted your message successfully!</h3>
+            </div>
+            <div id="error_message"
+                    style="width:100%; height:100%; display:none; ">
+                        <h3>Error</h3>
+            </div>
+        </div>
+    </div>
 </body>
 <footer class="container">
   <p class="float-right"><a href="#">Back to top</a></p>
