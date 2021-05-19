@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Log In</title>
+    <title>Registration</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,26 +29,31 @@
         -o-background-size: cover;
         background-size: cover;
         color: white;
-        text-align:center;
+        text-align:center;  
       }
       .container{
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        padding: 150px;
+        padding: 50px;
+        margin-top: auto;
+        max-width: fit-content;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-    <form action="./controllers/authenticate-controller" method="POST">
+    <h2>Register Here</h2>
+    <div class="container" my-4>
+    <form action="./controllers/register-controller" method="POST">
+      Name: <input type="text" name="name" />
+    <br>
       Email: <input type="text" name="email" /> 
       <br>
       Password:
       <input type="password" name="password" />
       <br>
       <input type="submit" value="Submit" />
-    </form></div>
+    </form>
+  </div>
   </body>
 </html>
